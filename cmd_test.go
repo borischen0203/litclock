@@ -173,10 +173,10 @@ func TestInputMinute15(t *testing.T) {
 func TestInputMinute30(t *testing.T) {
 	input := [...]string{"13:30"}
 
-	expected := "One o'clock"
+	expected := "Half past one"
 	actual := cmd.NumericToText(input[:]...)
 
-	assert.Equal(t, expected, actual, "error in input minute is 15")
+	assert.Equal(t, expected, actual, "error in input minute is 30")
 }
 
 //Should return correct human text when input minute 45.
