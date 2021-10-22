@@ -46,6 +46,7 @@ func NumericToTextCommand(cmd *cobra.Command, args []string) {
 func NumericToText(args ...string) string {
 	inputLength := len(args)
 	humanText := ""
+
 	switch inputLength {
 	case 0: //without input paramater
 		t := time.Now()

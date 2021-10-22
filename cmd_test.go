@@ -2,8 +2,10 @@ package main
 
 import (
 	"testing"
+	"time"
 
 	"github.com/borischen0203/litclock/cmd"
+	"github.com/borischen0203/litclock/services"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -123,7 +125,8 @@ func TestInvalidTime(t *testing.T) {
 func TestWithoutInput(t *testing.T) {
 	input := [...]string{}
 
-	expected := InvalidInput
+	current := time.Now()
+	expected := services.TimeToWords(current.Hour(), current.Minute())
 	actual := cmd.NumericToText(input[:]...)
 
 	assert.Equal(t, expected, actual, "error in input empty string")
