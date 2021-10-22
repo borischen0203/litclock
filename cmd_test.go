@@ -119,12 +119,92 @@ func TestInvalidTime(t *testing.T) {
 	assert.Equal(t, expected, actual, "error in input is not numeric time")
 }
 
-//Should return correct time text when input empty string.
+//Should return current human time text when input empty string.
 func TestWithoutInput(t *testing.T) {
-	input := [...]string{""}
+	input := [...]string{}
 
 	expected := InvalidInput
 	actual := cmd.NumericToText(input[:]...)
 
 	assert.Equal(t, expected, actual, "error in input empty string")
+}
+
+//Should return correct human text when input minute is 00.
+func TestInputMinuteZero(t *testing.T) {
+	input := [...]string{"13:00"}
+
+	expected := "One o'clock"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 00")
+}
+
+//Should return correct human text when input minute is 1.
+func TestInputMinuteOne(t *testing.T) {
+	input := [...]string{"13:01"}
+
+	expected := "One past one"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 1")
+}
+
+//Should return correct human text when input minute 59.
+func TestInputMinute59(t *testing.T) {
+	input := [...]string{"13:59"}
+
+	expected := "One to two"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 59")
+}
+
+//Should return correct human text when input minute 15.
+func TestInputMinute15(t *testing.T) {
+	input := [...]string{"13:15"}
+
+	expected := "Quarter past one"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 15")
+}
+
+//Should return correct human text when input minute 30.
+func TestInputMinute30(t *testing.T) {
+	input := [...]string{"13:30"}
+
+	expected := "One o'clock"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 15")
+}
+
+//Should return correct human text when input minute 45.
+func TestInputMinutes45(t *testing.T) {
+	input := [...]string{"13:45"}
+
+	expected := "Quarter to two"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 45")
+}
+
+//Should return correct human text when input minute more than 30.
+func TestInputMinuteMoreThan30(t *testing.T) {
+	input := [...]string{"13:31"}
+
+	expected := "Twenty nine to two"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 31")
+}
+
+//Should return correct human text when input minute less than 29.
+func TestInputMinuteLess30(t *testing.T) {
+	input := [...]string{"13:29"}
+
+	expected := "Twenty nine past one"
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input minute is 29")
 }

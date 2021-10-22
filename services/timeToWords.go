@@ -30,7 +30,7 @@ func TimeToWords(hour int, min int) string {
 		result = fmt.Sprintf("Half past %s", nums[hour%12])
 	case min == 45:
 		result = fmt.Sprintf("Quarter to %s", nums[(hour%12)+1])
-	case min <= 30:
+	case min < 30:
 		result = fmt.Sprintf("%s past %s", FirstUpper(nums[min]), nums[hour%12])
 	case min > 30:
 		result = fmt.Sprintf("%s to %s", FirstUpper(nums[60-min]), nums[(hour%12)+1])
@@ -38,6 +38,7 @@ func TimeToWords(hour int, min int) string {
 	return result
 }
 
+//This function Upper first letter
 func FirstUpper(s string) string {
 	if s == "" {
 		return ""
