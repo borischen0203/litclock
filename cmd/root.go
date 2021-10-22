@@ -34,31 +34,33 @@ var rootCmd = &cobra.Command{
 	Long:  `This command convert numeric time to human friendly text`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	// Args: cobra.RangeArgs(0, 1),
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: NumericToTextCommand,
+}
 
-		inputLength := len(args)
-		humanText := ""
-		switch inputLength {
-		case 0:
-			t := time.Now()
-			humanText = services.TimeToWords(t.Hour(), t.Minute())
-			fmt.Println(humanText)
-		case 1:
-			t, err := time.Parse("15:04", args[0])
-			if err != nil {
-				fmt.Println("invalid time")
-				return
-			}
-			humanText = services.TimeToWords(t.Hour(), t.Minute())
+//This function mainly excute command
+func NumericToTextCommand(cmd *cobra.Command, args []string) {
+	fmt.Println(NumericToText(args...))
+}
 
-			fmt.Println(humanText)
-		default:
-			fmt.Println("Out of command")
-
+//This function mainly excute
+func NumericToText(args ...string) string {
+	inputLength := len(args)
+	humanText := ""
+	switch inputLength {
+	case 0: //without input paramater
+		t := time.Now()
+		humanText = services.TimeToWords(t.Hour(), t.Minute())
+	case 1: //with input one paramater
+		t, err := time.Parse("15:04", args[0])
+		if err != nil {
+			return "Invalid input"
 		}
+		humanText = services.TimeToWords(t.Hour(), t.Minute())
+	default: //with input more than one paramater
+		return "Invalid input"
 
-	},
+	}
+	return humanText
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
