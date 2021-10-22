@@ -18,8 +18,10 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"github.com/spf13/cobra"
+	"time"
 
+	"github.com/borischen0203/litclock/services"
+	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
@@ -28,16 +30,35 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "litclock",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "This command convert numeric time to human friendly text",
+	Long:  `This command convert numeric time to human friendly text`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	// Args: cobra.RangeArgs(0, 1),
+	Run: func(cmd *cobra.Command, args []string) {
+
+		inputLength := len(args)
+		humanText := ""
+		switch inputLength {
+		case 0:
+			t := time.Now()
+			humanText = services.TimeToWords(t.Hour(), t.Minute())
+			fmt.Println(humanText)
+		case 1:
+			t, err := time.Parse("15:04", args[0])
+			if err != nil {
+				fmt.Println("invalid time")
+				return
+			}
+			humanText = services.TimeToWords(t.Hour(), t.Minute())
+
+			fmt.Println(humanText)
+		default:
+			fmt.Println("Out of command")
+
+		}
+
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
