@@ -7,6 +7,11 @@ import (
 
 //This function mainly convert numeric time to human friendly text
 func TimeToWords(hour int, min int) string {
+
+	if hour > 23 || hour < 0 || min > 59 || min < 0 {
+		return "Invalid input"
+	}
+
 	nums := [...]string{"twelve", "one", "two", "three", "four",
 		"five", "six", "seven", "eight", "nine",
 		"ten", "eleven", "twelve", "thirteen",
