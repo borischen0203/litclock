@@ -233,7 +233,7 @@ func TestInputMinuteLess16(t *testing.T) {
 }
 
 //Should return the same human text when input hour in 1 and 13.
-func TestInput13and01(t *testing.T) {
+func TestInputHour13and01(t *testing.T) {
 	input01 := [...]string{"01:01"}
 	input13 := [...]string{"13:01"}
 
@@ -244,12 +244,33 @@ func TestInput13and01(t *testing.T) {
 }
 
 //Should return the correct human text when input hour is 12 and 00.
-func TestInput(t *testing.T) {
+func TestInputHour12and00(t *testing.T) {
 	input12 := [...]string{"12:01"}
 	input00 := [...]string{"00:01"}
 
 	expected := cmd.NumericToText(input12[:]...)
 	actual := cmd.NumericToText(input00[:]...)
 
-	assert.Equal(t, expected, actual, "error in input hour in 1 and 13")
+	assert.Equal(t, expected, actual, "error in input hour is 12 and 00")
+}
+
+//Should return the correct human text when input hour is 12 and 0.
+func TestInputHour12and0(t *testing.T) {
+	input12 := [...]string{"12:00"}
+	input0 := [...]string{"0:00"}
+
+	expected := cmd.NumericToText(input12[:]...)
+	actual := cmd.NumericToText(input0[:]...)
+
+	assert.Equal(t, expected, actual, "error in input hour in 12 and 0")
+}
+
+//Should return the correct human text when input min 0.
+func TestInputMin0(t *testing.T) {
+	input := [...]string{"0:0"}
+
+	expected := InvalidInput
+	actual := cmd.NumericToText(input[:]...)
+
+	assert.Equal(t, expected, actual, "error in input input min 0")
 }
