@@ -51,7 +51,6 @@ func NumericToText(args ...string) string {
 	case 0: //without input paramater
 		t := time.Now()
 		humanText = services.TimeToWords(t.Hour(), t.Minute())
-		fmt.Println(t.Hour())
 	case 1: //with input one paramater
 		t, err := time.Parse("15:04", args[0])
 		if err != nil {

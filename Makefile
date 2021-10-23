@@ -1,4 +1,4 @@
-APP?=shoris
+APP?=litclock
 
 default:
 	echo ${APP}
