@@ -111,17 +111,17 @@ func TestInputInvalidType2(t *testing.T) {
 	assert.Equal(t, expected, actual, "error in input is symbol")
 }
 
-//Should return "Invalid input" when parameter is not numeric time.
+//Should return "Invalid input" when input empty string.
 func TestInputEmptyString(t *testing.T) {
 	input := [...]string{""}
 
 	expected := InvalidInput
 	actual := cmd.NumericToText(input[:]...)
 
-	assert.Equal(t, expected, actual, "error in input is not numeric time")
+	assert.Equal(t, expected, actual, "error in input empty string")
 }
 
-//Should return current human time text when input empty string.
+//Should return current human time text when input without parameter.
 func TestWithoutInput(t *testing.T) {
 	input := [...]string{}
 
@@ -129,7 +129,7 @@ func TestWithoutInput(t *testing.T) {
 	expected := services.TimeToWords(current.Hour(), current.Minute())
 	actual := cmd.NumericToText(input[:]...)
 
-	assert.Equal(t, expected, actual, "error in input empty string")
+	assert.Equal(t, expected, actual, "error in input without parameter")
 }
 
 //Should return correct human text when input minute is 00.
@@ -265,14 +265,14 @@ func TestInputHour12and0(t *testing.T) {
 	assert.Equal(t, expected, actual, "error in input hour in 12 and 0")
 }
 
-//Should return the correct human text when input min 0.
+//Should return the "Invalid input" when input min 0.
 func TestInputMin0(t *testing.T) {
 	input := [...]string{"0:0"}
 
 	expected := InvalidInput
 	actual := cmd.NumericToText(input[:]...)
 
-	assert.Equal(t, expected, actual, "error in input input min 0")
+	assert.Equal(t, expected, actual, "error in input min 0")
 }
 
 //Should return the correct human text when input hour is 01 and 1.

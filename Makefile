@@ -7,7 +7,7 @@ default:
 ## build: build the application
 build: clean
 	@echo "Building..."
-	@go build -o bin/${APP} main.go
+	@go build -o ${APP} main.go
 
 all: build test
 
@@ -21,13 +21,15 @@ run:
 ## clean: cleans the binary
 clean:
 	@echo "Cleaning"
-	@rm -rf bin/${APP}
+	@rm -rf ${APP}
 
 .PHONY: test
 ## test: runs go test with default values
 test:
 	go test -v -count=1 -race ./...
 
+docker_build:
+	docker build . -t ${APP}
 
 .PHONY: help
 ## help: prints this help message
