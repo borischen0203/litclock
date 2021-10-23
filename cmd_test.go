@@ -112,7 +112,7 @@ func TestInputInvalidType2(t *testing.T) {
 }
 
 //Should return "Invalid input" when parameter is not numeric time.
-func TestInvalidTime(t *testing.T) {
+func TestInputEmptyString(t *testing.T) {
 	input := [...]string{""}
 
 	expected := InvalidInput
@@ -273,4 +273,15 @@ func TestInputMin0(t *testing.T) {
 	actual := cmd.NumericToText(input[:]...)
 
 	assert.Equal(t, expected, actual, "error in input input min 0")
+}
+
+//Should return the correct human text when input hour is 01 and 1.
+func TestInputHour01and1(t *testing.T) {
+	input01 := [...]string{"01:00"}
+	input1 := [...]string{"1:00"}
+
+	expected := cmd.NumericToText(input01[:]...)
+	actual := cmd.NumericToText(input1[:]...)
+
+	assert.Equal(t, expected, actual, "error in input hour in 01 and 1")
 }
