@@ -16,7 +16,9 @@ limitations under the License.
 package cmd
 
 import (
+	"embed"
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -26,6 +28,9 @@ import (
 )
 
 var cfgFile string
+
+//go:embed gophers
+var embedGopherFiles embed.FS
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -39,7 +44,13 @@ var rootCmd = &cobra.Command{
 
 //This function mainly excute command
 func NumericToTextCommand(cmd *cobra.Command, args []string) {
-	fmt.Println(NumericToText(args...))
+	result := NumericToText(args...)
+	if result == "Invalid input" {
+		// gopherSay(result)
+		fmt.Println(result)
+	} else {
+		fmt.Println(result)
+	}
 }
 
 //This function mainly excute
@@ -62,6 +73,26 @@ func NumericToText(args ...string) string {
 
 	}
 	return humanText
+}
+
+func gopherSay(s string) {
+	nbChar := len(s)
+
+	line := " "
+	for i := 0; i <= nbChar; i++ {
+		line += "-"
+	}
+
+	fmt.Println(line)
+	fmt.Println("< " + s + " >")
+	fmt.Println(line)
+	fmt.Println("         \\")
+
+	fileData, err := embedGopherFiles.ReadFile("gophers/gopher.txt")
+	if err != nil {
+		log.Fatal("Error during read gopher ascii file", err)
+	}
+	fmt.Println(string(fileData))
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

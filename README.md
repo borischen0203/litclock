@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/scraly/gophers/main/back-to-the-future-v2.png" alt="back-to-the-future-v2" width=300>
+<img src="https://raw.githubusercontent.com/scraly/gophers/main/back-to-the-future-v2.png" alt="back-to-the-future-v2" width=400>
 
 <p align="Left">
   <p align="Left">
@@ -7,7 +7,11 @@
 </p>
 
 # Literal clock
-This `litclock` command-line tool mainly converts numeric time to human friendly text. Fox example, 5:05 -> Five past five.
+This `litclock` command-line tool mainly converts numeric time to human friendly text.
+
+Numeric Time -> Human Friendly Text:
+- 1:00 -> One o'clock
+- 13:05 -> Five past one
 
 # Features
 - `litclock` command: Be able to convert numeric time to human text.
@@ -15,16 +19,13 @@ This `litclock` command-line tool mainly converts numeric time to human friendly
 
 # How to use
 
-## Docker:
+## Run in Docker:
+Required
+- Install docker
+
+Pull docker image(borischen0203/litclock)
 ```bash
-# Step1: docker pull
 docker pull borischen0203/litclock
-
-# Step2: docker run
-docker run -it --rm borischen0203/litclock
-
-# Or docker run + numeric time
-docker run -it --rm borischen0203/litclock 15:40
 ```
 ### Docker run demo
 ```bash
@@ -37,11 +38,11 @@ docker run -it --rm borischen0203/litclock 15:40
 > Twenty to four
 ```
 
-## Local:
+## Run in Local:
 
-### pre:
+Required
 - Install go(version >= 1.6)
-- Install make cli(https://formulae.brew.sh/formula/make)
+- Install `make` cli(https://formulae.brew.sh/formula/make)
 
 ```bash
 # clone a repo
@@ -73,7 +74,7 @@ make all
 - Github actions
 - shell
 
-### Todo:
+## Todo:
 - [ ] Release cli on Homebrew
 ```bash
 brew tap borischen0203/litclock
