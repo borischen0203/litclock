@@ -9,7 +9,7 @@ build: clean
 	@echo "Building..."
 	@go build -o ${APP} main.go
 
-all: build test
+all: test build
 
 .PHONY: run
 ## run: runs go run main.go
