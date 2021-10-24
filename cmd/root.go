@@ -46,8 +46,8 @@ var rootCmd = &cobra.Command{
 func NumericToTextCommand(cmd *cobra.Command, args []string) {
 	result := NumericToText(args...)
 	if result == "Invalid input" {
-		// gopherSay(result)
-		fmt.Println(result)
+		gopherSay(result)
+		// fmt.Println(result)
 	} else {
 		fmt.Println(result)
 	}

@@ -23,19 +23,25 @@ Numeric Time -> Human Friendly Text:
 Required
 - Install docker
 
-Pull docker image(borischen0203/litclock)
+### Run process
+Step1: Pull docker image(borischen0203/litclock)
 ```bash
 docker pull borischen0203/litclock
 ```
+Step2:  Run docker image as below command
+```bash
+docker run -it --rm borischen0203/litclock
+```
+
 ### Docker run demo
 ```bash
 # Display the current time in the human text without input parameter
-> docker run -it --rm borischen0203/litclock
-> Seven past two
+$ docker run -it --rm borischen0203/litclock
+$ Seven past two
 
-# Display the current time in the human text with input parameter
-> docker run -it --rm borischen0203/litclock 15:40
-> Twenty to four
+# Display the the human text with input numeric time
+$ docker run -it --rm borischen0203/litclock 15:40
+$ Twenty to four
 ```
 
 ## Run in Local:
@@ -43,27 +49,35 @@ docker pull borischen0203/litclock
 Required
 - Install go(version >= 1.6)
 - Install `make` cli(https://formulae.brew.sh/formula/make)
-
 ```bash
-# clone a repo
+brew install make
+```
+
+### Run process
+Step1: Clone the repo
+```bash
 git clone https://github.com/borischen0203/litclock.git
-
-# Use `make` to execute makefile run test and build
+```
+Step2: Use `make` to execute makefile run test and build
+```bash
 make all
-
-# Execute with or without parameter
+```
+Step3: Execute build file with or without parameter
+```bash
 ./litclock
+```
+```bash
 ./litclock 15:40
 ```
 ### Local run demo
 ```bash
 # Display the current time in the human text without input parameter
-> ./litclock
-> Seven past two
+$ ./litclock
+$ Seven past two
 
-# Display the current time in the human text with input parameter
-> ./litclock 15:40
-> Twenty to four
+# Display the human text with input numeric time
+$ ./litclock 15:40
+$ Twenty to four
 ```
 
 ## Tech stack
