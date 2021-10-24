@@ -1,5 +1,13 @@
 package services
 
+/***
+ *
+ * This file provide time convert service
+ *
+ * @author: Boris
+ * @version: 2021-10-21
+ *
+ */
 import (
 	"fmt"
 	"strings"
