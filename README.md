@@ -19,6 +19,16 @@ Numeric Time -> Human Friendly Text:
 
 # How to use
 
+## On macOS via Homebrew:
+Step1:
+```bash
+brew tap borischen0203/litclock
+```
+Step2:
+```bash
+brew install litclock
+```
+
 ## Run in Docker:
 Required
 - Install docker
@@ -89,8 +99,4 @@ $ Twenty to four
 - shell
 
 ## Todo:
-- [ ] Release cli on Homebrew
-```bash
-brew tap borischen0203/litclock
-brew install litclock
-```
+- [V] Release cli on Homebrew
