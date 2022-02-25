@@ -13,6 +13,9 @@ Numeric Time -> Human Friendly Text:
 - 1:00 -> One o'clock
 - 13:05 -> Five past one
 
+Service link:
+https://github.com/borischen0203/litclock-service
+
 # Features
 - `litclock` command: Be able to convert numeric time to human text.
 
