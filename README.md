@@ -99,4 +99,4 @@ $ Twenty to four
 - shell
 
 ## Todo:
-- [V] Release cli on Homebrew
+- [X] Release cli on Homebrew
